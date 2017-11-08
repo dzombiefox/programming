@@ -1,0 +1,4 @@
+program menggunakan python dengan framework django 1.87 , database sqlite3
+- install django,widget_tweaks
+- masuk ke folder programming  , kemudian ketikkan python manage.py runserver atau ./manage.py runserver
+- akses via localhost:8000

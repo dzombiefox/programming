@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+{% block title %} Data Stok {% endblock %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% block content %}
+
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="#">Home</a></li>
+  <li class="breadcrumb-item"><a href="#">Book</a></li>
+  <li class="breadcrumb-item active">Data</li>
+</ol>
+  </div>
+          <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+{#            <div class="box-header">#}
+{#              <h3 class="box-title">Data Machine</h3>#}
+{##}
+{#            </div>#}
+            <!-- /.box-header -->
+            <div class="box-body">
+                   <br>
+                   <a href="{% url 'addbook' %}"class="btn pull-right btn-success btn-flat bg-aqua">Add Book</a>
+            <br>
+                <br>
+
+               <table id="example" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>NO</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Date Publish</th>
+                  <th>Number Of Page</th>
+                  <th>Type Of Book</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in data %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{ data.title }}
+                  </td>
+                  <td>{{ data.author }}</td>
+                  <td> {{ data.publish_at}}</td>
+                  <td> {{ data.number_of_page}}</td>
+                  <td>
+                      {% if data.type_of_book == "nov" %}
+                        one of novel
+                      {% elif data.type_of_book == "doc" %}
+                        documentation
+                      {% else %}
+                          other
+                      {% endif %}
+                  </td>
+                  <td width="12%">
+                     <a href="{% url 'viewbook' data.id %}"  class=" fa fa-eye btn-flat btn-sm" title="edit"></a>
+                     <a href="{% url 'editbook' data.id %}"  class=" fa fa-edit btn-flat btn-sm" title="edit"></a>
+                     <a href="{% url 'deletebook' data.id %}"  class="fa fa-remove btn-flat btn-sm" onclick="return confirm('sure delete !!')" title="remove"></a>
+                  </td>
+                </tr>
+                {% endfor %}
+
+
+                </tbody>
+
+              </table>
+
+<hr>
+            </div>
+          </div>
+        </div>
+          </div>
+              </div>
+
+
+
+
+
+{% endblock %}
